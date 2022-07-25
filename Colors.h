@@ -31,7 +31,7 @@ namespace Codes
     //You can see your terminal's name by debugging the "term" variable
     vector<string> validTerminals = {
         "xterm",
-        "xterm-256color",
+        "xterm-256color"
     };
 
     bool can_show_colors()
@@ -41,6 +41,7 @@ namespace Codes
         {
             return false;
         }
+        //cout << term << endl;
         string toString = term;
         bool found = false;
         for (auto validTerminal : validTerminals)
