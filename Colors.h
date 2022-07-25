@@ -33,8 +33,13 @@ namespace Codes
 
     bool can_show_colors()
     {
+        cout << "toString" << endl;
         char* term = getenv("TERM");
-        string toString = string(term);
+        if (term == NULL)
+        {
+            return false;
+        }
+        string toString = term;
         bool found = false;
         for (auto validTerminal : validTerminals)
         {
