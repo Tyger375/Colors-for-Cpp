@@ -27,13 +27,15 @@ namespace Styles
 
 namespace Codes
 {
+    //If your terminal supports colors and it isn't here, please, add its name
+    //You can see your terminal's name by debugging the "term" variable
     vector<string> validTerminals = {
-        "xterm"
+        "xterm",
+        "xterm-256color",
     };
 
     bool can_show_colors()
     {
-        cout << "toString" << endl;
         char* term = getenv("TERM");
         if (term == NULL)
         {
@@ -53,7 +55,7 @@ namespace Codes
     };
     string prefix = "\033[";
     string end = "m";
-    string String(int code) { return (prefix + to_string(code) + end); };
+    string String(int code) { return can_show_colors() ? (prefix + to_string(code) + end) : ""; };
 
     //Colors
     string red() { return String(Colors::RED); };
@@ -75,6 +77,10 @@ namespace Codes
 
     string background(int code) { return String(code + 10); };
     string make(string String, vector<string> styles, vector<string> ends={def()}) {
+        if (!can_show_colors())
+        {
+            return String;
+        }
         string final_str;
         for (auto style : styles)
         {
