@@ -1,5 +1,7 @@
 *.exe
 *.obj
 *.out
+*.gch
+*.save
 .vscode
 test.cpp
