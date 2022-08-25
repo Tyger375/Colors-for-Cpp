@@ -132,7 +132,7 @@ public:
    void debug()
    {
 	printf("\033[0m");
-	for (int i = 100; i > getPercentage(); i--)
+	for (int i = 100/2; i > (int)getPercentage()/2; i--)
 	{
 	   printf(" ");
 	}
@@ -143,7 +143,7 @@ public:
 	printf("\r");
 	this->infos();
 	printf("%s", color.c_str());
-	for (int j = 0; j < getPercentage(); j++)
+	for (int j = 0; j < (int)getPercentage()/2; j++)
 	{
            printf("%c", this->progress_char);
 	}
