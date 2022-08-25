@@ -25,5 +25,12 @@ int main()
   */
   cout << Codes::make("hi", {Codes::red(), Codes::background(Colors::AQUA), Codes::bold()}) << endl;
   //Returned value: "\033[031m\033[046m\033[1mhi\033[0m"
+
+  //Making a progress bar
+  ProgressBar pb; //ProgressBar(char progress_char=' ', int goal=10, string info="", string Color=Codes::background(Colors::GREEN));
+  float incrementer = 0.001;
+  for (float i = 0; i <= 11; i += incrementer)
+    pb.update(incrementer);
+  cout << endl;
   return 0;
 }

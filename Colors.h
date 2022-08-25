@@ -107,21 +107,23 @@ class ProgressBar
 {
 public:
    float progress;
-   int goal;
+   const int goal;
    string strinfos;
    char progress_char;
    string color;
-   ProgressBar(char c=' ', int goal=10, string info="", string Color=Codes::background(Colors::GREEN))
+   string rightInfos;
+   ProgressBar(char c=' ', int goal=10, string info="", string Color=Codes::background(Colors::GREEN)) : goal(goal)
    {
 	this->progress = 0;
-	this->goal = goal;
 	progress_char = c;
 	this->strinfos = info;
 	this->color=Color;
+	this->rightInfos = "\t\t\t";
    };
    int getPercentage() {
 	float divided = (float)(progress / (float)this->goal);
-	return (int)(divided*100);
+	int result = (int)(divided*100);
+	return (result <= 100) ? result : 100;
    };
    void infos()
    {
@@ -134,7 +136,7 @@ public:
 	{
 	   printf(" ");
 	}
-	printf("\t\t\t%d/%d - %d%%", (int)this->progress, this->goal, getPercentage());
+	printf("%s%d/%d - %d%%", this->rightInfos.c_str(), (int)this->progress, this->goal, getPercentage());
    }
    void update(float increment)
    {
